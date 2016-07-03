@@ -191,8 +191,8 @@ function compile(schema, cache, root, opts = {}) {
         let errorMessage = sym + '.message';
         let errorName = `${formatName(name)} + '.' + ${sym + '.field'}`;
         validate(
-          'validate.errors.push({field:%s,message:%s,schema:%s})',
-          errorName, errorMessage, nodeSym
+          'validate.errors.push(Object.assign({}, %s, {field:%s,message:%s,schema:%s}))',
+          sym, errorName, errorMessage, nodeSym
         );
       }
     }
